@@ -3,15 +3,15 @@ function createBoxes2(numberOfBoxes) {
   const wrapper = document.querySelector(".wrapper");
   for (let i = 0; i < numberOfBoxes; i++) {
     const div = document.createElement("div");
-    div.setAttribute("class", "box");
+    //div.setAttribute("class", "box");
     div.setAttribute("id", "box-" + i);
+    div.setAttribute("class", "box number1");
     div.addEventListener("click", function () {
       console.log(`You clicked box-${i}`);
     });
     wrapper.append(div);
   }
 }
-createBoxes2(256);
 
 function incrementer(arr, i, j) {
     const up = (i == 0); //First row
@@ -101,6 +101,7 @@ function createArray(length) {
 
 //Intermediate 16x16
 //40 mines
+
 let ran1 = 0;
 let ran2 = 0;
 
@@ -117,8 +118,6 @@ while (k>0) {
     }
 }
 
-console.log(arr);
-
 for (let i = 0; i<arr.length; i++) {
     for (let j = 0; j<arr[i].length; j++) {
         if (arr[i][j] < 0) {
@@ -127,5 +126,5 @@ for (let i = 0; i<arr.length; i++) {
     }
 }
 
-console.log(arr);
+createBoxes2(256);
 
