@@ -1,0 +1,21 @@
+.background {
+  width: 1500px;
+  height: 1000px;
+  background-color: blue;
+}
+.wrapper {
+  margin: 50px;
+  padding: 50px;
+  display: grid;
+  grid-template-columns: repeat(16, 25px);
+  gap: 10px;
+  grid-template-rows: repeat(16, 25px);
+}
+.box {
+  border-style: dashed;
+  border-color: black;
+  border-width: small;
+  cursor: pointer;
+  /* grid-column: 1/5;
+  grid-row: 1/5; */
+}
