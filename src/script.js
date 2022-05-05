@@ -1,33 +1,4 @@
 "use strict";
-// const wrapperElement = document.querySelector(".wrapper");
-// const createBoxes = function (numberOfBoxes) {
-//   const html = `<div class="box-x"></div>`;
-//   console.log(numberOfBoxes);
-//   for (let i = 0; i < 256; i++) {
-//     wrapperElement.insertAdjacentHTML("afterbegin", html);
-//   }
-// };
-// createBoxes(256);
-
-// const createBoxes2 = function (numberOfBoxes) {
-//   for (let i = 0; i <= numberOfBoxes; i++) {
-//     console.log(i);
-//     let divElementCreator = document.createElement("div");
-//     let divClassAttacher = document.querySelector(`.box-${i}`);
-//     document.body.insertBefore(divElementCreator, divClassAttacher);
-//   }
-// };
-// createBoxes2(25);
-
-// function createBoxes2(numberOfBoxes) {
-//   for (let i = 0; i < numberOfBoxes; i++) {
-//     const divElementCreator = document.createElement("div");
-//     let divClassAttacher = document.querySelector(`.${i}`); // dunno what this is supposed to do
-//     document.body.insertBefore(divElementCreator, divClassAttacher); // dunno what this is supposed to do
-//   }
-// }
-// createBoxes2(25);
-
 function createBoxes2(numberOfBoxes) {
   const wrapper = document.querySelector(".wrapper");
   for (let i = 0; i < numberOfBoxes; i++) {
@@ -42,22 +13,119 @@ function createBoxes2(numberOfBoxes) {
 }
 createBoxes2(256);
 
-//   movements.forEach((mov, i) => {
-//     const type = mov > 0 ? 'deposit' : 'withdrawal';
-//
-//     const html = `
-//      <div class="movements__row">
-//         <div class="movements__type movements__type--${type}">${
-//       i + 1
-//     } ${type}</div>
-//         <div class="movements__value">${mov}</div>
-//       </div>
-//       `;
-//     containerMovements.insertAdjacentHTML('afterbegin', html);
-//   });
-// };
-// displayMovements(account1.movements);
-// console.log(containerMovements.innerHTML); // Shows all the html that is the use case for innerHTML over textContent
-// for (const i = 0; i < array.length; i++) {
-//   array[i]
-// }
+function incrementer(arr, i, j) {
+    const up = (i == 0); //First row
+    const down = (i == arr.length-1); //Last row
+    const left = (j == 0); //First column
+    const right = (j == arr.length-1); //Last column
+
+    if (down || right || up || left) {
+        if (down) {
+            if (down && left) { 
+                arr[i-1][j]++;
+                arr[i-1][j+1]++;
+                arr[i][j+1]++;
+            }
+            else if (down && right) {
+                arr[i-1][j-1]++;
+                arr[i-1][j]++;
+                arr[i][j-1]++;
+            }
+            else {
+                arr[i-1][j-1]++;
+                arr[i-1][j]++;
+                arr[i-1][j+1]++;
+                arr[i][j-1]++;
+                arr[i][j+1]++;
+            }
+        }
+        else if (up) {
+            if (up && left) {
+                arr[i][j+1]++;
+                arr[i+1][j]++;
+                arr[i+1][j+1]++;
+            }
+            else if (up && right) {
+                arr[i][j-1]++;
+                arr[i+1][j-1]++;
+                arr[i+1][j]++;
+            }
+            else {
+                arr[i][j-1]++;
+                arr[i][j+1]++;
+                arr[i+1][j-1]++;
+                arr[i+1][j]++;
+                arr[i+1][j+1]++;
+            } 
+        }
+        else if (left) {
+            arr[i-1][j]++;
+            arr[i-1][j+1]++;
+            arr[i][j+1]++;
+            arr[i+1][j]++;
+            arr[i+1][j+1]++;
+        }
+
+        else {
+            arr[i-1][j-1]++;
+            arr[i-1][j]++;
+            arr[i][j-1]++;
+            arr[i+1][j-1]++;
+            arr[i+1][j]++;
+        }
+    }
+    else {
+        arr[i-1][j-1]++;
+        arr[i-1][j]++;
+        arr[i-1][j+1]++;
+        arr[i][j-1]++;
+        arr[i][j+1]++;
+        arr[i+1][j-1]++;
+        arr[i+1][j]++;
+        arr[i+1][j+1]++;
+    }
+    return arr;
+}
+
+function createArray(length) {
+    let arr = new Array(length || 0),
+        i = length;
+
+    if (arguments.length > 1) {
+        let args = Array.prototype.slice.call(arguments, 1);
+        while(i--) arr[length-1 - i] = createArray.apply(this, args);
+    }
+
+    return arr;
+}
+
+//Intermediate 16x16
+//40 mines
+let ran1 = 0;
+let ran2 = 0;
+
+let arr = createArray(16, 16);
+let k = 40;
+for (let i=0; i<arr.length; i++) for (let j = 0; j<arr[i].length; j++) arr[i][j] = 0; //Populate array with 0s
+// Make array placement random
+while (k>0) {
+    ran1 = Math.floor(Math.random() * 16);
+    ran2 = Math.floor(Math.random() * 16);
+    if (arr[ran1][ran2] > -41) {
+        arr[ran1][ran2] = -41
+        k--;
+    }
+}
+
+console.log(arr);
+
+for (let i = 0; i<arr.length; i++) {
+    for (let j = 0; j<arr[i].length; j++) {
+        if (arr[i][j] < 0) {
+            incrementer(arr,i,j);
+        }
+    }
+}
+
+console.log(arr);
+
