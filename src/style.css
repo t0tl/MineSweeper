@@ -19,3 +19,15 @@
   /* grid-column: 1/5;
   grid-row: 1/5; */
 }
+
+.bomb {
+  background-image: url(../images/bomb-vector-image.png);
+}
+
+.number1 {
+  background-image: url(../images/number.png);
+}
+
+/* body {
+  background-color: purple;
+} */
