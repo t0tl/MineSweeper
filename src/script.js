@@ -13,6 +13,28 @@ function createBoxes2(numberOfBoxes) {
 }
 createBoxes2(256);
 
+if (arr[i][j] < 0) {
+  console.log(`You clicked on a bomb`);
+} else if (arr[i][j] === 0) {
+  console.log(`You clicked on an empty grid`);
+} else if (arr[i][j] === 1) {
+  console.log(`You clicked on a 1`);
+} else if (arr[i][j] === 2) {
+  console.log(`You clicked on a 2`);
+} else if (arr[i][j] === 3) {
+  console.log(`You clicked on a 3`);
+} else if (arr[i][j] === 4) {
+  console.log(`You clicked on a 4`);
+} else if (arr[i][j] === 5) {
+  console.log(`You clicked on a 5`);
+} else if (arr[i][j] === 6) {
+  console.log(`You clicked on a 6`);
+} else if (arr[i][j] === 7) {
+  console.log(`You clicked on a 7`);
+} else if (arr[i][j] === 8) {
+  console.log(`You clicked on a 8`);
+}
+
 function incrementer(arr, i, j) {
   const up = i == 0; //First row
   const down = i == arr.length - 1; //Last row
@@ -97,8 +119,9 @@ let ran2 = 0;
 
 let arr = createArray(16, 16);
 let k = 40;
-for (let i = 0; i < arr.length; i++)
+for (let i = 0; i < arr.length; i++) {
   for (let j = 0; j < arr[i].length; j++) arr[i][j] = 0; //Populate array with 0s
+}
 // Make array placement random
 while (k > 0) {
   ran1 = Math.floor(Math.random() * 16);
@@ -109,7 +132,7 @@ while (k > 0) {
   }
 }
 
-console.log(arr);
+// console.log(arr);
 
 for (let i = 0; i < arr.length; i++) {
   for (let j = 0; j < arr[i].length; j++) {
@@ -119,4 +142,4 @@ for (let i = 0; i < arr.length; i++) {
   }
 }
 
-console.log(arr);
+// console.log(arr);
