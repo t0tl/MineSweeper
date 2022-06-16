@@ -7,6 +7,7 @@
   grid-template-rows: repeat(16, 25px);
 }
 .box {
+  margin: 0px;
   border-style: dashed;
   border-color: black;
   border-width: small;
@@ -20,3 +21,15 @@
 .number1 {
   background-image: url(../images/number1.png);
 }
+
+.bomb {
+  background-image: url(../images/bomb-vector-image.png);
+}
+
+.number1 {
+  background-image: url(../images/number.png);
+}
+
+/* body {
+  background-color: purple;
+} */
