@@ -1,5 +1,5 @@
 .wrapper {
-  margin: 50px;
+  margin: 75px;
   padding: 50px;
   display: grid;
   grid-template-columns: repeat(16, 25px);

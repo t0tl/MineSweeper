@@ -1,4 +1,5 @@
 "use strict";
+
 function createBoxes2(numberOfBoxes) {
   const wrapper = document.querySelector(".wrapper");
   for (let i = 0; i < numberOfBoxes; i++) {
@@ -74,6 +75,7 @@ function incrementer(arr, i, j) {
             arr[i+1][j]++;
         }
     }
+
     else {
         arr[i-1][j-1]++;
         arr[i-1][j]++;
@@ -110,8 +112,8 @@ let k = 40;
 for (let i=0; i<arr.length; i++) for (let j = 0; j<arr[i].length; j++) arr[i][j] = 0; //Populate array with 0s
 // Make array placement random
 while (k>0) {
-    ran1 = Math.floor(Math.random() * 16);
-    ran2 = Math.floor(Math.random() * 16);
+    ran1 = Math.floor(Math.random() * arr.length);
+    ran2 = Math.floor(Math.random() * arr.length);
     if (arr[ran1][ran2] > -41) {
         arr[ran1][ran2] = -41
         k--;
