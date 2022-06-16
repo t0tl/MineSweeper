@@ -6,43 +6,42 @@ function createBoxes2(numberOfBoxes) {
     const div = document.createElement("div");
     //div.setAttribute("class", "box");
     div.setAttribute("id", "box-" + i);
-    div.setAttribute("class", "box number1");
+    div.setAttribute("class", "box bomb");
     div.addEventListener("click", function () {
       console.log(`You clicked box-${i}`);
+      let j = i % arr.length;
+      i = Math.floor(i / arr.length);
+      if (arr[i][j] < 0) {
+        console.log(`You clicked on a bomb`);
+      } else if (arr[i][j] === 0) {
+        console.log(`You clicked on an empty grid`);
+      } else if (arr[i][j] === 1) {
+        console.log(`You clicked on a 1`);
+      } else if (arr[i][j] === 2) {
+        console.log(`You clicked on a 2`);
+      } else if (arr[i][j] === 3) {
+        console.log(`You clicked on a 3`);
+      } else if (arr[i][j] === 4) {
+        console.log(`You clicked on a 4`);
+      } else if (arr[i][j] === 5) {
+        console.log(`You clicked on a 5`);
+      } else if (arr[i][j] === 6) {
+        console.log(`You clicked on a 6`);
+      } else if (arr[i][j] === 7) {
+        console.log(`You clicked on a 7`);
+      } else if (arr[i][j] === 8) {
+        console.log(`You clicked on a 8`);
+      }
     });
     wrapper.append(div);
   }
 }
 
-if (arr[i][j] < 0) {
-  console.log(`You clicked on a bomb`);
-} else if (arr[i][j] === 0) {
-  console.log(`You clicked on an empty grid`);
-} else if (arr[i][j] === 1) {
-  console.log(`You clicked on a 1`);
-} else if (arr[i][j] === 2) {
-  console.log(`You clicked on a 2`);
-} else if (arr[i][j] === 3) {
-  console.log(`You clicked on a 3`);
-} else if (arr[i][j] === 4) {
-  console.log(`You clicked on a 4`);
-} else if (arr[i][j] === 5) {
-  console.log(`You clicked on a 5`);
-} else if (arr[i][j] === 6) {
-  console.log(`You clicked on a 6`);
-} else if (arr[i][j] === 7) {
-  console.log(`You clicked on a 7`);
-} else if (arr[i][j] === 8) {
-  console.log(`You clicked on a 8`);
-}
-
-
-function incrementer(arr, i, j) {
+function bombPlacer(arr, i, j) {
   const up = i == 0; //First row
   const down = i == arr.length - 1; //Last row
   const left = j == 0; //First column
   const right = j == arr.length - 1; //Last column
-
 
   if (down || right || up || left) {
     if (down) {
@@ -50,66 +49,57 @@ function incrementer(arr, i, j) {
         arr[i - 1][j]++;
         arr[i - 1][j + 1]++;
         arr[i][j + 1]++;
-      } 
-      else if (down && right) {
+      } else if (down && right) {
         arr[i - 1][j - 1]++;
         arr[i - 1][j]++;
         arr[i][j - 1]++;
-      } 
-      else {
+      } else {
         arr[i - 1][j - 1]++;
         arr[i - 1][j]++;
         arr[i - 1][j + 1]++;
         arr[i][j - 1]++;
         arr[i][j + 1]++;
       }
-    } 
-
-    else if (up) {
+    } else if (up) {
       if (up && left) {
         arr[i][j + 1]++;
         arr[i + 1][j]++;
         arr[i + 1][j + 1]++;
-      } 
-      else if (up && right) {
+      } else if (up && right) {
         arr[i][j - 1]++;
         arr[i + 1][j - 1]++;
         arr[i + 1][j]++;
-      } 
-      else {
+      } else {
         arr[i][j - 1]++;
         arr[i][j + 1]++;
         arr[i + 1][j - 1]++;
         arr[i + 1][j]++;
         arr[i + 1][j + 1]++;
       }
-    } 
-    else if (left) {
+    } else if (left) {
       arr[i - 1][j]++;
       arr[i - 1][j + 1]++;
       arr[i][j + 1]++;
       arr[i + 1][j]++;
       arr[i + 1][j + 1]++;
-    } 
-    else {
+    } else {
       arr[i - 1][j - 1]++;
       arr[i - 1][j]++;
       arr[i][j - 1]++;
       arr[i + 1][j - 1]++;
       arr[i + 1][j]++;
     }
-    }
-    else {
-        arr[i-1][j-1]++;
-        arr[i-1][j]++;
-        arr[i-1][j+1]++;
-        arr[i][j-1]++;
-        arr[i][j+1]++;
-        arr[i+1][j-1]++;
-        arr[i+1][j]++;
-        arr[i+1][j+1]++;
-    }
-    return arr;
+  } else {
+    arr[i - 1][j - 1]++;
+    arr[i - 1][j]++;
+    arr[i - 1][j + 1]++;
+    arr[i][j - 1]++;
+    arr[i][j + 1]++;
+    arr[i + 1][j - 1]++;
+    arr[i + 1][j]++;
+    arr[i + 1][j + 1]++;
+  }
+  return arr;
 }
 
 function createArray(length) {
@@ -136,20 +126,19 @@ for (let i = 0; i < arr.length; i++) {
   for (let j = 0; j < arr[i].length; j++) arr[i][j] = 0; //Populate array with 0s
 }
 // Make array placement random
-while (k>0) {
-    ran1 = Math.floor(Math.random() * arr.length);
-    ran2 = Math.floor(Math.random() * arr.length);
-    if (arr[ran1][ran2] > -41) {
-        arr[ran1][ran2] = -41
-        k--;
-    }
+while (k > 0) {
+  ran1 = Math.floor(Math.random() * arr.length);
+  ran2 = Math.floor(Math.random() * arr.length);
+  if (arr[ran1][ran2] > -41) {
+    arr[ran1][ran2] = -41;
+    k--;
+  }
 }
 
-for (let i = 0; i<arr.length; i++) {
-    for (let j = 0; j<arr[i].length; j++) {
-        if (arr[i][j] < 0) {
-            incrementer(arr,i,j);
-        }
+for (let i = 0; i < arr.length; i++) {
+  for (let j = 0; j < arr[i].length; j++) {
+    if (arr[i][j] < 0) {
+      bombPlacer(arr, i, j);
     }
   }
 }
