@@ -12,6 +12,7 @@
   grid-template-rows: repeat(16, 25px);
 }
 .box {
+  margin: 0px;
   border-style: dashed;
   border-color: black;
   border-width: small;
