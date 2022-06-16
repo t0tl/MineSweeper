@@ -5,10 +5,8 @@ function createBoxes2(numberOfBoxes) {
     const div = document.createElement("div");
     div.setAttribute("class", "box","number1");
     div.setAttribute("id", "box-" + i);
-<<<<<<< Updated upstream
-=======
-    // div.setAttribute("class", "number1");
->>>>>>> Stashed changes
+    div.setAttribute("class", "number1");
+
     div.addEventListener("click", function () {
       console.log(`You clicked box-${i}`);
     });
@@ -39,11 +37,13 @@ if (arr[i][j] < 0) {
   console.log(`You clicked on a 8`);
 }
 
+
 function incrementer(arr, i, j) {
   const up = i == 0; //First row
   const down = i == arr.length - 1; //Last row
   const left = j == 0; //First column
   const right = j == arr.length - 1; //Last column
+
 
   if (down || right || up || left) {
     if (down) {
@@ -146,4 +146,5 @@ for (let i = 0; i < arr.length; i++) {
   }
 }
 
-// console.log(arr);
+
+console.log(arr);
