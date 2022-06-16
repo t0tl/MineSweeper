@@ -3,8 +3,12 @@ function createBoxes2(numberOfBoxes) {
   const wrapper = document.querySelector(".wrapper");
   for (let i = 0; i < numberOfBoxes; i++) {
     const div = document.createElement("div");
-    div.setAttribute("class", "box");
+    div.setAttribute("class", "box","number1");
     div.setAttribute("id", "box-" + i);
+<<<<<<< Updated upstream
+=======
+    // div.setAttribute("class", "number1");
+>>>>>>> Stashed changes
     div.addEventListener("click", function () {
       console.log(`You clicked box-${i}`);
     });
